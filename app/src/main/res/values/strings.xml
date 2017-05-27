@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">ChilaKillers</string>
+    <string name="por_raza">Por Raza</string>
+    <string name="por_edad">Por Edad</string>
+    <string name="por_color">Por color de pelaje</string>
+    <string name="por_estado">Por Estado</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+    <string name="me_interesa">Me Interesa</string>
+    <string name="contactanos">Contactanos</string>
+    <string name="title_activity_perros">PerrosActivity</string>
+    <string name="title_activity_gatos">GatosActivity</string>
+    <string name="text_boton_perros">Perros</string>
+    <string name="text_boton_gatos">Gatos</string>
+    <string name="title_activity_tipo">TipoActivity</string>
+    <string name="title_activity_mi_futura_mascota">MiFuturaMascota</string>
+    <string name="title_activity_datos_usuario">DatosUsuarioActivity</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido_paterno">Apellido Paterno</string>
+    <string name="apellido_materno">Apellido Materno</string>
+    <string name="fecha_nacimiento">Fecha de Nacimiento</string>
+    <string name="correo">Correo</string>
+    <string name="estado">Estado</string>
+    <string name="ciudad">Ciudad</string>
+    <string name="colonia">colonia</string>
+    <string name="calle">Calle</string>
+    <string name="numero">Número</string>
+    <string name="comentarios">Comentarios</string>
+    <string name="enviar_btn">Enviar Datos</string>
+</resources>

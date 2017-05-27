@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.jcesa.chilakillers.DatosUsuarioActivity"
+    tools:showIn="@layout/activity_datos_usuario">
+
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <TextView
+            android:id="@+id/nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nombre" />
+
+        <EditText
+            android:id="@+id/nombre_valor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Escribe tu nombre" />
+
+        <TextView
+            android:id="@+id/apellido_paterno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/apellido_paterno" />
+
+        <EditText
+            android:id="@+id/apellido_paterno_valor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Escribe tu primer apellido" />
+
+        <TextView
+            android:id="@+id/apellido_materno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/apellido_materno"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <EditText
+            android:id="@+id/apellido_materno_valor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Escribe tu segundo apellido"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <TextView
+            android:id="@+id/fecha_nacimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fecha_nacimiento" />
+
+        <EditText
+            android:id="@+id/fecha_nacimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:text="Escribe tu fecha de nacimiento" />
+
+        <TextView
+            android:id="@+id/correo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/correo" />
+
+        <EditText
+            android:id="@+id/correo_valor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:text="Escribe tu correo" />
+
+        <TextView
+            android:id="@+id/estado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/estado" />
+
+        <EditText
+            android:id="@+id/estado_valor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Escribe estado" />
+
+        <TextView
+            android:id="@+id/cuidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ciudad" />
+
+        <EditText
+            android:id="@+id/cuidad_valor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Escribe cuidad" />
+
+        <TextView
+            android:id="@+id/colonia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/colonia" />
+
+        <EditText
+            android:id="@+id/colonia_valor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Escribe colonia" />
+
+        <TextView
+            android:id="@+id/calle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/calle" />
+
+        <EditText
+            android:id="@+id/calle_valor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Escribe calle" />
+
+        <TextView
+            android:id="@+id/numero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/numero" />
+
+        <EditText
+            android:id="@+id/numero_valor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:text="Escribe número" />
+
+        <TextView
+            android:id="@+id/comentarios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comentarios" />
+
+        <EditText
+            android:id="@+id/comentarios_valor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Escribe comentarios" />
+
+        <Button
+            android:id="@+id/enviar_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/enviar_btn" />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
