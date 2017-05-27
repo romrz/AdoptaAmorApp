@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo5"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -46,6 +46,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.jcesa.chilakillers.MiFuturaMascota" />
         </activity>
+        <activity
+            android:name=".MascotaActivity"
+            android:label="@string/title_activity_mascota"
+            android:parentActivityName=".TipoActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jcesa.chilakillers.TipoActivity" />
+        </activity>
+        <activity android:name=".mensaje"></activity>
     </application>
 
 </manifest>

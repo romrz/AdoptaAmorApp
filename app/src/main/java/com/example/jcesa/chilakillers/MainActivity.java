@@ -14,10 +14,18 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    protected boolean aviso;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*Lanzar Dialogo*/
+        if(aviso == false) {
+            showDialog();
+            aviso = true;
+        }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -44,7 +52,11 @@ public class MainActivity extends AppCompatActivity {
 
         Button perrosBtn = (Button) findViewById(R.id.perros);
         perrosBtn.setOnClickListener(listener);
+    }
 
+    public void showDialog(){
+        DialogoFragment df = DialogoFragment.newInstance(1);
+        df.show(getFragmentManager(),"dialog");
     }
 
     @Override /*Invocamos el Menú*/
@@ -78,6 +90,14 @@ public class MainActivity extends AppCompatActivity {
     public void irGatosActivity(View view){
         Intent newIntentGatos = new Intent(getBaseContext(),TipoActivity.class);
         startActivity(newIntentGatos);
+    }
+
+    public void doPositiveClick() {
+
+    }
+
+    public void doNegativeClick() {
+
     }
 
    /* public void irPerrosActivity(View v){

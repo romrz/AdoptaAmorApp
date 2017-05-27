@@ -1,13 +1,22 @@
 package com.example.jcesa.chilakillers;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 public class TipoActivity extends AppCompatActivity {
 
@@ -29,9 +38,50 @@ public class TipoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle b = getIntent().getExtras();
-        String type = b.getString("type");
+        final String type = b.getString("type");
         setTitle(type);
+
+
+        final String[] myDataset = {
+                "Mascota 1",
+                "Mascota 2",
+                "Mascota 3",
+                "Mascota 4",
+                "Mascota 1",
+                "Mascota 2",
+                "Mascota 3",
+                "Mascota 4",
+                "Mascota 1",
+                "Mascota 2",
+                "Mascota 3",
+                "Mascota 4"
+        };
+
+
+        ListView listView = (ListView) findViewById(R.id.tipo_list);
+        listView.setAdapter(new TipoAdapter(this, myDataset));
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(TipoActivity.this.getBaseContext(), MascotaActivity.class);
+                i.putExtra("name", myDataset[position]);
+                //i.putExtra("type",type);
+                //startActivityForResult(i,1);
+                startActivity(i);
+            }
+        });
     }
+
+    /*@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if (requestCode == 1){
+            if(resultCode == Activity.RESULT_OK){
+                String type = data.getStringExtra("type");
+            }
+        }
+    }
+*/
 
     @Override /*Invocamos el Menú*/
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,6 +111,30 @@ public class TipoActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public class TipoAdapter extends ArrayAdapter<String> {
+        private final Context context;
+        private final String[] values;
+
+        public TipoAdapter(Context context, String[] values) {
+            super(context, R.layout.tipo_item, values);
+            this.context = context;
+            this.values = values;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            View rowView = inflater.inflate(R.layout.tipo_item, parent, false);
+            TextView textView = (TextView) rowView.findViewById(R.id.item_name);
+            textView.setText(values[position]);
+
+            return rowView;
+        }
     }
 
 }

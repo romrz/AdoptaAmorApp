@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 public class MiFuturaMascota extends AppCompatActivity {
 
@@ -28,6 +29,16 @@ public class MiFuturaMascota extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
+        Bundle b = getIntent().getExtras();
+        String name = b.getString("name");
+
+        setTitle(name);
+
+        TextView textView = (TextView) findViewById(R.id.item_name);
+        textView.setText(name);
     }
 
     @Override /*Invocamos el Menú*/
