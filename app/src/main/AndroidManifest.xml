@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jcesa.chilakillers">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo5"
@@ -9,6 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".SplashScreenActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -29,24 +40,6 @@
                 android:value="com.example.jcesa.chilakillers.MainActivity" />
         </activity>
         <activity
-            android:name=".MiFuturaMascota"
-            android:label="@string/title_activity_mi_futura_mascota"
-            android:parentActivityName=".TipoActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.jcesa.chilakillers.TipoActivity" />
-        </activity>
-        <activity
-            android:name=".DatosUsuarioActivity"
-            android:label="@string/title_activity_datos_usuario"
-            android:parentActivityName=".MiFuturaMascota"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.jcesa.chilakillers.MiFuturaMascota" />
-        </activity>
-        <activity
             android:name=".MascotaActivity"
             android:label="@string/title_activity_mascota"
             android:parentActivityName=".TipoActivity"
@@ -55,7 +48,33 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.jcesa.chilakillers.TipoActivity" />
         </activity>
-        <activity android:name=".mensaje"></activity>
+        <activity
+            android:name=".RazasActivity"
+            android:label="@string/title_activity_razas"
+            android:parentActivityName=".TipoActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jcesa.chilakillers.TipoActivity" />
+        </activity>
+        <activity
+            android:name=".AyudaMascotaActivity"
+            android:label="@string/title_activity_ayuda_mascota"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jcesa.chilakillers.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jcesa.chilakillers.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ChilaKillers</string>
+    <string name="app_name">Adopta Amor</string>
     <string name="todos">Ver todos</string>
     <string name="por_raza">Ver por raza</string>
     <string name="por_edad">Ver por edad</string>
@@ -31,4 +31,10 @@
     <string name="title_activity_mascota">MascotaActivity</string>
     <string name="alert_dialog_ok">Iniciar</string>
     <string name="alert_dialog_cancel">Cancelar</string>
+    <string name="mensaje">Bienvenido!! \\n Esta APP te facilitará obtener una mascota, así como también podrás ayudar a las mascotas que habitan en la calle a encontrar un hogar</string>
+    <string name="spalshScreen">Bienvenido!!</string>
+    <string name="title_activity_razas">Por Razas</string>
+    <string name="ayudar_Mascota">Ayudar una mascota</string>
+    <string name="title_activity_ayuda_mascota">AyudaMascotaActivity</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

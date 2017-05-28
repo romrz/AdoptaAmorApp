@@ -3,11 +3,13 @@ package com.example.jcesa.chilakillers;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,10 +17,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
+
 public class TipoActivity extends AppCompatActivity {
+    private Mascota[] mMascotas;
+    private boolean mType;
+    protected int mRaza = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,39 +47,18 @@ public class TipoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle b = getIntent().getExtras();
-        final String type = b.getString("type");
+        String type = b.containsKey("type") ? b.getString("type") : "";
+        mType = type.equals("Perros");
+
+        mRaza = b.containsKey("raza") ? b.getInt("raza") : 0;
+
         setTitle(type);
+    }
 
-
-        final String[] myDataset = {
-                "Mascota 1",
-                "Mascota 2",
-                "Mascota 3",
-                "Mascota 4",
-                "Mascota 1",
-                "Mascota 2",
-                "Mascota 3",
-                "Mascota 4",
-                "Mascota 1",
-                "Mascota 2",
-                "Mascota 3",
-                "Mascota 4"
-        };
-
-
-        ListView listView = (ListView) findViewById(R.id.tipo_list);
-        listView.setAdapter(new TipoAdapter(this, myDataset));
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(TipoActivity.this.getBaseContext(), MascotaActivity.class);
-                i.putExtra("name", myDataset[position]);
-                //i.putExtra("type",type);
-                //startActivityForResult(i,1);
-                startActivity(i);
-            }
-        });
+    @Override
+    protected void onStart() {
+        super.onStart();
+        new HttpRequestTask().execute();
     }
 
     /*@Override
@@ -98,7 +86,12 @@ public class TipoActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //comparamos para ver que opción has seleccionado en el menú
+        if (id == R.id.todos) {
+            return true;
+        }
         if (id == R.id.por_raza) {
+            Intent intR = new Intent(getBaseContext(),RazasActivity.class);
+            startActivity(intR);
             return true;
         }
         if (id == R.id.por_edad) {
@@ -113,12 +106,27 @@ public class TipoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    protected void updateMascotas() {
 
-    public class TipoAdapter extends ArrayAdapter<String> {
+        ListView listView = (ListView) findViewById(R.id.tipo_list);
+        listView.setAdapter(new TipoAdapter(this, mMascotas));
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getBaseContext(), MascotaActivity.class);
+                i.putExtra("id", mMascotas[position].getId_mascota());
+                startActivity(i);
+            }
+        });
+    }
+
+
+    public class TipoAdapter extends ArrayAdapter<Mascota> {
         private final Context context;
-        private final String[] values;
+        private final Mascota[] values;
 
-        public TipoAdapter(Context context, String[] values) {
+        public TipoAdapter(Context context, Mascota[] values) {
             super(context, R.layout.tipo_item, values);
             this.context = context;
             this.values = values;
@@ -131,10 +139,46 @@ public class TipoActivity extends AppCompatActivity {
 
             View rowView = inflater.inflate(R.layout.tipo_item, parent, false);
             TextView textView = (TextView) rowView.findViewById(R.id.item_name);
-            textView.setText(values[position]);
+            textView.setText(values[position].getNombreM());
+
+            ImageView image = (ImageView) rowView.findViewById(R.id.icon);
+            new DownloadImageTask(image).execute("http://172.16.15.220:8080/" + mMascotas[position].getImagen1());
 
             return rowView;
         }
+    }
+
+    private class HttpRequestTask extends AsyncTask<Void, Void, Mascota[]> {
+        @Override
+        protected Mascota[] doInBackground(Void... params) {
+            try {
+                String url = "http://172.16.15.220:8080/MascotaWs/wr/universal_ws/";
+                if(mRaza == 0) {
+                    url += "mascotas/" + (mType ? "true" : "false");
+                }
+                else {
+                    url += "razas/" + mRaza;
+                }
+
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                Mascota[] mascotas = restTemplate.getForObject(url, Mascota[].class);
+
+                //Mascota[] mascotas = entity.getBody();
+                return mascotas;
+            } catch (Exception e) {
+                Log.e("MainActivity", e.getMessage(), e);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Mascota[] mascotas) {
+            mMascotas = mascotas;
+            updateMascotas();
+        }
+
     }
 
 }

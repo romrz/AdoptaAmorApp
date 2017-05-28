@@ -1,6 +1,7 @@
 package com.example.jcesa.chilakillers;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,14 +21,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*Lanzar Dialogo*/
-        if(aviso == false) {
-            showDialog();
-            aviso = true;
-        }
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(Color.WHITE);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -38,20 +35,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        View.OnClickListener listener = new View.OnClickListener(){
+        Button gatosBtn = (Button) findViewById(R.id.gatos);
+        gatosBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent i = new Intent(getBaseContext(),TipoActivity.class); /*Creamos el Intent*/
-                i.putExtra("type",((Button)v).getText()); /*Poonemos parámetros extras*/
+                i.putExtra("type", "Gatos"); /*Poonemos parámetros extras*/
                 startActivity(i);
             }
-        };
-
-        Button gatosBtn = (Button) findViewById(R.id.gatos);
-        gatosBtn.setOnClickListener(listener);
+        });
 
         Button perrosBtn = (Button) findViewById(R.id.perros);
-        perrosBtn.setOnClickListener(listener);
+        perrosBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent i = new Intent(getBaseContext(),TipoActivity.class); /*Creamos el Intent*/
+                i.putExtra("type", "Perros"); /*Poonemos parámetros extras*/
+                startActivity(i);
+            }
+        });
     }
 
     public void showDialog(){
@@ -81,6 +83,13 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if(id == R.id.contactanos){
+            Intent intentM = new Intent(getBaseContext(),Main2Activity.class);
+            startActivity(intentM);
+            return true;
+        }
+        if(id == R.id.ayudarMascota){
+            Intent intentM = new Intent(getBaseContext(),AyudaMascotaActivity.class);
+            startActivity(intentM);
             return true;
         }
 
